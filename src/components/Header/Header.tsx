@@ -1,17 +1,25 @@
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { authContext } from '../AuthProvider/AuthProvider'
-import { logOut } from '../../firebase/firebase'
+import { logOut, signInWithGoogle } from '../../firebase/firebase'
 import { User as FirebaseUser } from 'firebase/auth'
-import GoogleLogin from '../GoogleLogin/GoogleLogin'
+import { useState } from 'react'
 import styles from './Header.module.css'
 
 export const Header = () => {
 	const user = useContext(authContext)
 	return (
 		<div className={styles.Header}>
-			<Link to='/'>Home</Link>
-			{user ? <UserDropdown user={user} /> : <GoogleLogin />}
+			<span className={styles.Logo}>
+				<Link to='/'>Logo Here</Link>
+			</span>
+			{user ? (
+				<UserDropdown user={user} />
+			) : (
+				<button className={styles.SignIn} onClick={signInWithGoogle}>
+					sign in
+				</button>
+			)}
 		</div>
 	)
 }
@@ -19,21 +27,35 @@ export const Header = () => {
 const UserDropdown: React.FunctionComponent<{ user: FirebaseUser }> = ({
 	user,
 }) => {
-	return (
-		<>
-			<div>{user.displayName}</div>
-			<Link to='/profile'>Profile</Link>
-			<Logout />
-		</>
-	)
-}
+	const [dropdownVisible, setDropDownVisible] = useState(false)
 
-const Logout = () => {
+	const toggleDropDownVisibility = () => {
+		setDropDownVisible((curr) => !curr)
+	}
+
 	return (
-		<div>
-			<button className='' onClick={logOut}>
-				sign out
-			</button>
+		<div
+			className={`${styles.DropdownWrapper} ${
+				dropdownVisible && styles.dropdownVisible
+			}`}
+			onClick={toggleDropDownVisibility}
+		>
+			<div className={styles.DropdownLabel}>
+				<p>{user.displayName}</p>
+				<span
+					className={`material-icons ${
+						dropdownVisible && styles.dropdownArrowRotated
+					}`}
+				>
+					expand_more
+				</span>
+			</div>
+			<div className={styles.Dropdown}>
+				<Link to='/profile'>Profile</Link>
+				<button className={styles.SignOut} onClick={logOut}>
+					sign out
+				</button>
+			</div>
 		</div>
 	)
 }
