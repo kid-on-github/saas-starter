@@ -17,7 +17,7 @@ export const Header = () => {
 				<UserDropdown user={user} />
 			) : (
 				<button className={styles.SignIn} onClick={signInWithGoogle}>
-					sign in
+					Sign in with Google
 				</button>
 			)}
 		</div>
