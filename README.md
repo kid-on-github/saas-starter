@@ -6,6 +6,7 @@ The starter includes the following features:
 - [x] Typescript (React, Cloudflare Functions, etc.)
 - [x] Google social sign in (with Firebase as the auth provider)
 - [x] Cloudflare Functions for serverless functions
+- [ ] Add linting and formatting
 - [ ] React Query for data fetching and caching
 - [ ] Pre-built *Join the Waitlist* functionality
 - [ ] Google Analytics integration
