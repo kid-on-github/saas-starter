@@ -1,4 +1,4 @@
-# Auth Starter
+# SAAS Starter
 
 This is a React (TS) project starter with authentication built in.
 
