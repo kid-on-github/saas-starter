@@ -17,8 +17,8 @@ Authentication is handled with Firebase. Currently the only way to sign in is wi
 
 1. Install dependencies with `npm install`.
 2. Copy the `firebase/config.example.ts` file to `firebase/config.ts` and fill out the required fields (these fields come from your Firebase project).
-3. Run the project with ``.
+3. Run the project with `npx wrangler pages dev -- npx react-scripts start`.
 
-### Deploy the project (Cloudflare Pages)
+The frontend can be accessed by going to [http://localhost:8788/](http://localhost:8788/).
 
-1.
+You can verify that the backend is running by going to [http://127.0.0.1:8788/api/hello](http://127.0.0.1:8788/api/hello).
